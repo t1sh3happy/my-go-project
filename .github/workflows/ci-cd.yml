@@ -17,15 +17,15 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
-        
+
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
           go-version: '1.18'
-          
+
       - name: Install dependencies
         run: go mod tidy
-        
+
       - name: Run tests
         run: go test ./...
 
@@ -43,4 +43,4 @@ jobs:
 
       - name: Deploy to server via SSH
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'bash /root/deploy-script.sh'
+          ssh -o StrictHostKeyChecking=no root@194.87.133.159 'bash /root/deploy-script.sh'
