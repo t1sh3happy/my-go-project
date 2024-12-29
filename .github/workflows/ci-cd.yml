@@ -1,11 +1,11 @@
 name: Go CI/CD
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -43,4 +43,4 @@ jobs:
 
       - name: Deploy to server via SSH
         run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'bash -s' < deploy-script.sh
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'bash /root/deploy-script.sh'
